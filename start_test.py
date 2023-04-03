@@ -177,7 +177,9 @@ for server in servers:
             reports.append(report_path_i)
             execute_test_command = '%s -n -f -t %s -l %s %s %s && exit' % (execute_path, test_plan, output_path_i, server_params, config_params)
             print("## Start ## - %s" % execute_test_command)
-            # os.system(execute_test_command)
+            # execute the jmeter file
+            os.system(execute_test_command)
+            # generate reports
             os.system('./bin/JMeterPluginsCMD.sh --generate-csv %s --input-jtl %s --plugin-type AggregateReport' % (report_path_i, output_path_i))
         generate_average_report(average_result_file, reports)
     generate_rawsheet()
